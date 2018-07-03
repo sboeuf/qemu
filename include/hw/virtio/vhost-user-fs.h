@@ -28,6 +28,7 @@ typedef struct {
     char *tag;
     uint16_t num_request_queues;
     uint16_t queue_size;
+    uint64_t cache_size;
 } VHostUserFSConf;
 
 typedef struct {
@@ -39,6 +40,7 @@ typedef struct {
     VhostUserState vhost_user;
 
     /*< public >*/
+    MemoryRegion cache;
 } VHostUserFS;
 
 #endif /* _QEMU_VHOST_USER_FS_H */
