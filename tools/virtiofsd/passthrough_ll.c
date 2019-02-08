@@ -35,15 +35,10 @@
  * \include passthrough_ll.c
  */
 
-#define _GNU_SOURCE
-#define FUSE_USE_VERSION 31
-
-#include "config.h"
-
+#include "fuse_lowlevel.h"
 #include <assert.h>
 #include <dirent.h>
 #include <errno.h>
-#include <fuse_lowlevel.h>
 #include <inttypes.h>
 #include <limits.h>
 #include <pthread.h>
@@ -58,6 +53,7 @@
 
 #include "passthrough_helpers.h"
 
+#define HAVE_POSIX_FALLOCATE 1
 /*
  * We are re-using pointers to our `struct lo_inode` and `struct
  * lo_dirp` elements as inodes. This means that we must be able to
