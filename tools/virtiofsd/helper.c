@@ -212,7 +212,8 @@ int fuse_daemonize(int foreground)
         char completed;
 
         if (pipe(waiter)) {
-            perror("fuse_daemonize: pipe");
+            fuse_log(FUSE_LOG_ERR, "fuse_daemonize: pipe: %s\n",
+                     strerror(errno));
             return -1;
         }
 
@@ -222,7 +223,8 @@ int fuse_daemonize(int foreground)
          */
         switch (fork()) {
         case -1:
-            perror("fuse_daemonize: fork");
+            fuse_log(FUSE_LOG_ERR, "fuse_daemonize: fork: %s\n",
+                     strerror(errno));
             return -1;
         case 0:
             break;
@@ -232,7 +234,8 @@ int fuse_daemonize(int foreground)
         }
 
         if (setsid() == -1) {
-            perror("fuse_daemonize: setsid");
+            fuse_log(FUSE_LOG_ERR, "fuse_daemonize: setsid: %s\n",
+                     strerror(errno));
             return -1;
         }
 
