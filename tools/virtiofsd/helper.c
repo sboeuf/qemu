@@ -153,6 +153,8 @@ void fuse_cmdline_help(void)
            "    -o clone_fd                use separate fuse device fd for "
            "each thread\n"
            "                               (may improve performance)\n"
+           "    -o flock|no_flock          enable/disable flock\n"
+           "                               default: no_flock\n"
            "    -o log_level=<level>       log level, default to \"info\"\n"
            "                               level could be one of \"debug, "
            "info, warn, err\"\n"
@@ -167,7 +169,13 @@ void fuse_cmdline_help(void)
            "    -o readdirplus|no_readdirplus\n"
            "                               enable/disable readirplus\n"
            "                               default: readdirplus\n"
-          );
+           "    -o timeout=<number>        I/O timeout (second)\n"
+           "                               default: depends on cache= option.\n"
+           "    -o writeback|no_writeback  enable/disable writeback cache\n"
+           "                               default: no_writeback\n"
+           "    -o xattr|no_xattr          enable/disable xattr\n"
+           "                               default: no_xattr\n"
+           );
 }
 
 static int fuse_helper_opt_proc(void *data, const char *arg, int key,
