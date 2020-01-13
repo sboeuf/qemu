@@ -1438,7 +1438,7 @@ static void lo_rename(fuse_req_t req, fuse_ino_t parent, const char *name,
 #ifndef SYS_renameat2
         fuse_reply_err(req, EINVAL);
 #else
-        res = renameat2(parent_inode->fd, name,
+        res = syscall(SYS_renameat2, parent_inode->fd, name,
                         newparent_inode->fd, newname, flags);
         if (res == -1 && errno == ENOSYS) {
             fuse_reply_err(req, EINVAL);
